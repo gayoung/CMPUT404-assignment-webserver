@@ -2,6 +2,7 @@ import SocketServer
 # coding: utf-8
 
 # Copyright 2013 Abram Hindle, Eddie Antonio Santos
+# (modified by Ga Young Kim)
 # 
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
