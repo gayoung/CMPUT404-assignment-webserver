@@ -46,18 +46,21 @@ class MyWebServer(SocketServer.BaseRequestHandler):
     #
     # This method process the request to serve a file in either ./www/ or ./www/deep directories
     # and sends the request to the server
-    def do_get(self, req_file):
+    def do_get(self, req_file):        
         cssFlag = 0
         
         # adding www to pathing
-        if(req_file == "/") | (req_file == "http://127.0.0.1:8080/") | (req_file == "http://127.0.0.1:8080/index.html") |(req_file == "/index.html"):
+        dirList = req_file.split("/")        
+        if((req_file == "/") | (req_file == "/www/")| (req_file == "http://127.0.0.1:8080/")|(req_file == "http://127.0.0.1:8080/index.html")
+            |(req_file == "/index.html")):
             req_file  = "www/index.html"
-        elif(req_file == "/base.css"):
+        elif(req_file == "/base.css") | (req_file == "www/base.css"):
             cssFlag = 1
             req_file  = "www/base.css"
-        elif (req_file == "/deep/index.html") | (req_file == "/deep/"):
+        elif ((req_file == "/deep/index.html")|(req_file == "/deep/")|(req_file == "http://127.0.0.1:8080/deep/")
+                 |(req_file == "http://127.0.0.1:8080/www/deep/")|(req_file == "http://127.0.0.1:8080/www/deep/index.html")):
             req_file  = "www/deep/index.html"
-        elif(req_file == "/deep/deep.css"):
+        elif(req_file == "/deep/deep.css") | (req_file == "www/deep/deep.css")|(req_file == "http://127.0.0.1:8080/www/deep/deep.css"):
             cssFlag = 1
             req_file  = "www/deep/deep.css"
         else:
